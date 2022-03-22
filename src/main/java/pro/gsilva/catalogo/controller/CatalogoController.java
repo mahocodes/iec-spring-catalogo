@@ -74,7 +74,7 @@ public class CatalogoController {
         return mv;
     }
     
-    @RequestMapping(value="/delMusica/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/deleteMusica/{id}", method=RequestMethod.GET)
     public String delMusica(@PathVariable("id") long id) {
         catalogoService.excluir(id);
         return "redirect:/musicas";

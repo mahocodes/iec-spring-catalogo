@@ -29,9 +29,9 @@ public class CatalogoServiceImpl implements CatalogoService {
     }
 
     @Override
-    public Musica save(Musica musica) {
+    public void save(Musica musica) {
         if (nonNull(musica) && nonNull(musica.getCategoria())) {
-            return catalogoRepository.save(musica);
+            catalogoRepository.save(musica);
         }
     }
 
