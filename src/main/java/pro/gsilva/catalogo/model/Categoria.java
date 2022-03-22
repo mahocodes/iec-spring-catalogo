@@ -1,17 +1,24 @@
 package pro.gsilva.catalogo.model;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
+@Getter
+@Setter
 @Entity
-@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "tb_categoria")
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank
+    @Column(name = "nome", length = 30)
     private String nome;
 }

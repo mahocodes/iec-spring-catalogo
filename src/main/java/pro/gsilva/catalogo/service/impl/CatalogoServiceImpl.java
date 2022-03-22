@@ -9,26 +9,30 @@ import pro.gsilva.catalogo.model.Musica;
 import pro.gsilva.catalogo.repository.CatalogoRepository;
 import pro.gsilva.catalogo.service.CatalogoService;
 
+import static java.util.Objects.nonNull;
+
 @Service
 public class CatalogoServiceImpl implements CatalogoService {
 
-    @Autowired 
+    @Autowired
     private CatalogoRepository catalogoRepository;
 
 
     @Override
-    public List<Musica> findAll() {       
+    public List<Musica> findAll() {
         return catalogoRepository.findAll();
     }
 
     @Override
-    public Musica findById(long id) {        
-        return catalogoRepository.findById(id).get();
+    public Musica findById(long id) {
+        return catalogoRepository.findById(id).orElse(new Musica());
     }
 
     @Override
-    public Musica save(Musica musica) {        
-        return catalogoRepository.save(musica);
+    public Musica save(Musica musica) {
+        if (nonNull(musica) && nonNull(musica.getCategoria())) {
+            return catalogoRepository.save(musica);
+        }
     }
 
     @Override
